@@ -150,7 +150,6 @@ export default class Login extends Vue {
     this.errorMessage = '';
     const userService = useUserService(this.nextBotId);
     // Push the name to submitted names
-    this.auth.url = `https://${this.auth.url}.bitsbee.io`;
     userService
       .login(this.auth)
       .then(() => {

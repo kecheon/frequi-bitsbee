@@ -120,8 +120,9 @@ export class UserService {
 
   public async login(auth: AuthPayload) {
     //  Login using username / password
+    const url = `https://${auth.url}.bitsbee.io`;
     const { data } = await axios.post<{}, AxiosResponse<AuthResponse>>(
-      `${auth.url}/api/v1/token/login`,
+      `${url}/api/v1/token/login`,
       {},
       {
         auth: { ...auth },
@@ -130,7 +131,7 @@ export class UserService {
     if (data.access_token && data.refresh_token) {
       const obj: AuthStorage = {
         botName: auth.botName,
-        apiUrl: auth.url,
+        apiUrl: url,
         accessToken: data.access_token || '',
         refreshToken: data.refresh_token || '',
         autoRefresh: true,
