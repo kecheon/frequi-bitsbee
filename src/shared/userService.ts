@@ -29,6 +29,7 @@ export class UserService {
     const info = UserService.getAllLoginInfos();
     delete info[this.botId];
     localStorage.setItem(AUTH_LOGIN_INFO, JSON.stringify(info));
+    window.location.reload();
   }
 
   private setAccessToken(token: string): void {
@@ -114,7 +115,6 @@ export class UserService {
 
   public logout(): void {
     console.log('Logging out');
-
     this.removeLoginInfo();
   }
 

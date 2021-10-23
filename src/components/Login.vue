@@ -11,9 +11,9 @@
       </b-form-group>
       <b-form-group
         :state="urlState"
-        label="API Url"
+        label="Bot ID"
         label-for="url-input"
-        invalid-feedback="API Url required"
+        invalid-feedback="Bot ID required"
       >
         <b-form-input
           id="url-input"
@@ -75,7 +75,7 @@ import { useUserService } from '@/shared/userService';
 import { AuthPayload, BotDescriptor } from '@/types';
 import { MultiBotStoreGetters } from '@/store/modules/botStoreWrapper';
 
-const defaultURL = window.location.origin || 'http://localhost:8080';
+// const defaultURL = window.location.origin || 'http://localhost:8080';
 const ftbot = namespace('ftbot');
 
 @Component({})
@@ -100,7 +100,7 @@ export default class Login extends Vue {
 
   auth: AuthPayload = {
     botName: '',
-    url: defaultURL,
+    url: '',
     username: '',
     password: '',
   };
@@ -125,7 +125,7 @@ export default class Login extends Vue {
   }
 
   resetLogin() {
-    this.auth.url = defaultURL;
+    this.auth.url = '';
     this.auth.username = '';
     this.auth.password = '';
     this.nameState = null;
@@ -150,6 +150,7 @@ export default class Login extends Vue {
     this.errorMessage = '';
     const userService = useUserService(this.nextBotId);
     // Push the name to submitted names
+    this.auth.url = `https://${this.auth.url}.bitsbee.io`;
     userService
       .login(this.auth)
       .then(() => {
@@ -177,6 +178,7 @@ export default class Login extends Vue {
             this.$router.push('/');
           }
         }
+        window.location.reload();
       })
       .catch((error) => {
         this.errorMessageCORS = false;
