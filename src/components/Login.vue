@@ -25,7 +25,7 @@
       </b-form-group>
       <b-form-group
         :state="nameState"
-        label="Username"
+        label="Email"
         label-for="username-input"
         invalid-feedback="Name is required"
       >
@@ -34,7 +34,7 @@
           v-model="auth.username"
           :state="nameState"
           required
-          placeholder="Freqtrader"
+          placeholder="Email subscribed to bitsbee.io"
           @keydown.enter.native="handleOk"
         ></b-form-input>
       </b-form-group>
