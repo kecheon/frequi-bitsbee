@@ -14,7 +14,9 @@
 
       <div class="row mr-0">
         <div class="col-mb-2 ml-2 d-flex align-items-center">
-          <span class="ml-2 text-nowrap">{{ strategyName }} | {{ timeframe || '' }}</span>
+          <span class="ml-2 text-nowrap">
+            {{ strategyName.split(':')[0] }} | {{ timeframe || '' }}
+          </span>
           <b-select
             v-model="pair"
             class="ml-2"

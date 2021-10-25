@@ -24,7 +24,7 @@
       </strong>
       on
       <strong>{{ botState.exchange }}</strong
-      >, with Strategy <strong>{{ botState.strategy.substring(0, 30) + '...' }}</strong>
+      >, with Strategy <strong>{{ botState.strategy.split(':')[0] }}</strong>
     </p>
     <p>
       Currently <strong>{{ botState.state }}</strong
