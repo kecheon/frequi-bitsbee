@@ -5,6 +5,7 @@ RUN mkdir /app
 WORKDIR /app
 
 # ENV PATH /usr/src/app/node_modules/.bin:$PATH
+ENV CLUSTER bots.bitsbee.io
 
 COPY package.json /app/package.json
 COPY yarn.lock /app/yarn.lock

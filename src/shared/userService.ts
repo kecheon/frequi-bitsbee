@@ -9,7 +9,6 @@ export class UserService {
   private botId: string;
 
   constructor(botId: string) {
-    console.log('botId', botId);
     this.botId = botId;
   }
 
@@ -114,13 +113,12 @@ export class UserService {
   }
 
   public logout(): void {
-    console.log('Logging out');
     this.removeLoginInfo();
   }
 
   public async login(auth: AuthPayload) {
     //  Login using username / password
-    const url = `https://${auth.url}.bitsbee.io`;
+    const url = `https://${auth.url}.bots.bitsbee.io`;
     const { data } = await axios.post<{}, AxiosResponse<AuthResponse>>(
       `${url}/api/v1/token/login`,
       {},
@@ -141,7 +139,6 @@ export class UserService {
   }
 
   public refreshToken(): Promise<string> {
-    console.log('Refreshing token...');
     const token = this.getRefreshToken();
     return new Promise((resolve, reject) => {
       axios
@@ -160,12 +157,10 @@ export class UserService {
           }
         })
         .catch((err) => {
-          console.error(err);
           if (err.response && err.response.status === 401) {
             // in case of errors when using the refresh token - logout.
             this.logout();
           } else if (err.response && (err.response.status === 500 || err.response.status === 404)) {
-            console.log('Bot seems to be offline... - retrying later');
             reject(err);
           }
         });

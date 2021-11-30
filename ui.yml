@@ -1,0 +1,11 @@
+---
+version: '3.8'
+services:
+  frequi:
+    image: bots_bitsbee_io_ui:cluster
+    # image: freqtradeorg/frequi:master
+    restart: unless-stopped
+    environment:
+      - CLUSTER="bots.bitsbee.io"
+    ports:
+      - "8080:80"
